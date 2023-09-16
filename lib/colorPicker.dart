@@ -43,7 +43,7 @@ class _ColorPickerExampleState extends State<ColorPickerExample> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  RaisedButton(
+                  MaterialButton(
                     elevation: 3.0,
                     onPressed: () {
                       showDialog(
@@ -78,7 +78,7 @@ class _ColorPickerExampleState extends State<ColorPickerExample> {
                         ? const Color(0xffffffff)
                         : const Color(0xff000000),
                   ),
-                  RaisedButton(
+                  MaterialButton(
                     elevation: 3.0,
                     onPressed: () {
                       showDialog(
@@ -118,7 +118,7 @@ class _ColorPickerExampleState extends State<ColorPickerExample> {
                 ],
               ),
               Center(
-                child: RaisedButton(
+                child: MaterialButton(
                   elevation: 3.0,
                   onPressed: () {
                     showDialog(
@@ -146,7 +146,7 @@ class _ColorPickerExampleState extends State<ColorPickerExample> {
                 ),
               ),
               Center(
-                child: RaisedButton(
+                child: MaterialButton(
                   elevation: 3.0,
                   onPressed: () {
                     showDialog(

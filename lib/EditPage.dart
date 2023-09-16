@@ -11,7 +11,6 @@ import 'package:numberpicker/numberpicker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-
 class EditPage extends StatefulWidget {
   const EditPage({super.key});
 
@@ -40,7 +39,7 @@ class _EditPageState extends State<EditPage> {
 
   Random rng = Random();
 
-   final List<Color> _colors = [
+  final List<Color> _colors = [
     Colors.red,
     Colors.pink,
     Colors.purple,
@@ -77,8 +76,7 @@ class _EditPageState extends State<EditPage> {
       } else {}
       _image = image;
     });
-    Directory('storage/emulated/0/' 'MemeGenerator')
-        .create(recursive: true);
+    Directory('storage/emulated/0/' 'MemeGenerator').create(recursive: true);
   }
 
   @override
@@ -99,10 +97,10 @@ class _EditPageState extends State<EditPage> {
                     children: <Widget>[
                       _image != null
                           ? Image.file(
-                        _image,
-                        width: MediaQuery.of(context).size.width,
-                        fit: BoxFit.fitHeight,
-                      )
+                              _image,
+                              width: MediaQuery.of(context).size.width,
+                              fit: BoxFit.fitHeight,
+                            )
                           : Container(),
                       Positioned(
                         left: offset.dx,
@@ -110,8 +108,8 @@ class _EditPageState extends State<EditPage> {
                         child: GestureDetector(
                             onPanUpdate: (details) {
                               setState(() {
-                                offset = Offset(
-                                    offset.dx + details.delta.dx, offset.dy + details.delta.dy);
+                                offset = Offset(offset.dx + details.delta.dx,
+                                    offset.dy + details.delta.dy);
                               });
                             },
                             child: SizedBox(
@@ -138,8 +136,8 @@ class _EditPageState extends State<EditPage> {
                                           blurRadius: 8.0,
                                           color: Colors.black87,
                                         ),
-                                      ],),
-
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -209,17 +207,18 @@ class _EditPageState extends State<EditPage> {
                 ),
                 imageSelected
                     ? Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    children: <Widget>[
-                      TextField(
-                        onChanged: (val) {
-                          setState(() {
-                            headerText = val;
-                          });
-                        },
-                        decoration: const InputDecoration(hintText: "Type your text here"),
-                      ),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          children: <Widget>[
+                            TextField(
+                              onChanged: (val) {
+                                setState(() {
+                                  headerText = val;
+                                });
+                              },
+                              decoration: const InputDecoration(
+                                  hintText: "Type your text here"),
+                            ),
 //                          SizedBox(
 //                            height: 12,
 //                          ),
@@ -231,66 +230,71 @@ class _EditPageState extends State<EditPage> {
 //                            },
 //                            decoration: InputDecoration(hintText: "Footer Text"),
 //                          ),
-                      const SizedBox(height: 20,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          const Text('Change Size:', style: TextStyle(fontSize: 16),),
-                          NumberPicker.horizontal(
-                            listViewHeight: 50,
-                              initialValue: 25,
-                              minValue: 10,
-                              maxValue: 80,
-                              step: 5,
-                              highlightSelectedValue: false,
-                              onChanged: (val){
-                                setState(() {
-                                  _fontSize = val*1.0;
-                                  print(val);
-                                });
-                              }),
-                        ],
-                      ),
-                      RaisedButton(
-                        elevation: 3.0,
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: const Text('Select a color'),
-                                content: SingleChildScrollView(
-                                  child: BlockPicker(
-                                    availableColors: _colors,
-                                    pickerColor: currentColor,
-                                    onColorChanged: changeColor,
-                                  ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                const Text(
+                                  'Change Size:',
+                                  style: TextStyle(fontSize: 16),
                                 ),
-                              );
-                            },
-                          );
-                        },
-                        child: const Text('Change Color'),
-                        color: currentColor,
-                        textColor: useWhiteForeground(currentColor)
-                            ? const Color(0xffffffff)
-                            : const Color(0xff000000),
-                      ),
-                      RaisedButton(
-                        onPressed: () {
-                          //TODO
-                          takeScreenshot();
-                        },
-                        child: const Text("Save"),
+                                NumberPicker.horizontal(
+                                    listViewHeight: 50,
+                                    initialValue: 25,
+                                    minValue: 10,
+                                    maxValue: 80,
+                                    step: 5,
+                                    highlightSelectedValue: false,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        _fontSize = val * 1.0;
+                                        print(val);
+                                      });
+                                    }),
+                              ],
+                            ),
+                            MaterialButton(
+                              elevation: 3.0,
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text('Select a color'),
+                                      content: SingleChildScrollView(
+                                        child: BlockPicker(
+                                          availableColors: _colors,
+                                          pickerColor: currentColor,
+                                          onColorChanged: changeColor,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              child: const Text('Change Color'),
+                              color: currentColor,
+                              textColor: useWhiteForeground(currentColor)
+                                  ? const Color(0xffffffff)
+                                  : const Color(0xff000000),
+                            ),
+                            MaterialButton(
+                              onPressed: () {
+                                //TODO
+                                takeScreenshot();
+                              },
+                              child: const Text("Save"),
+                            )
+                          ],
+                        ),
                       )
-                    ],
-                  ),
-                )
                     : Container(
-                  child: const Center(
-                    child: Text("Select image to get started"),
-                  ),
-                ),
+                        child: const Center(
+                          child: Text("Select image to get started"),
+                        ),
+                      ),
                 _imageFile != null ? Image.file(_imageFile) : Container(),
               ],
             ),
@@ -308,7 +312,7 @@ class _EditPageState extends State<EditPage> {
 
   takeScreenshot() async {
     RenderRepaintBoundary boundary =
-    globalKey.currentContext.findRenderObject();
+        globalKey.currentContext.findRenderObject();
     ui.Image image = await boundary.toImage();
     final directory = (await getApplicationDocumentsDirectory()).path;
     ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
@@ -332,6 +336,6 @@ class _EditPageState extends State<EditPage> {
 
   _askPermission() async {
     Map<PermissionGroup, PermissionStatus> permissions =
-    await PermissionHandler().requestPermissions([PermissionGroup.photos]);
+        await PermissionHandler().requestPermissions([PermissionGroup.photos]);
   }
 }

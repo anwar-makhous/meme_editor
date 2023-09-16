@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 
-
 class ExampleApp extends StatelessWidget {
   const ExampleApp({super.key});
 
@@ -76,12 +75,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(height: 16),
                 Text('Default', style: Theme.of(context).textTheme.titleLarge),
                 integerNumberPicker,
-                RaisedButton(
+                MaterialButton(
                   onPressed: () => _showIntDialog(),
                   child: Text("Current int value: $_currentIntValue"),
                 ),
                 const Divider(color: Colors.grey, height: 32),
-                Text('Horizontal', style: Theme.of(context).textTheme.titleLarge),
+                Text('Horizontal',
+                    style: Theme.of(context).textTheme.titleLarge),
                 horizontalNumberPicker,
                 Text(
                   "Current int value: $_currentHorizontalIntValue",
@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               children: <Widget>[
                 decimalNumberPicker,
-                RaisedButton(
+                MaterialButton(
                   onPressed: () => _showDoubleDialog(),
                   child: Text("Current double value: $_currentDoubleValue"),
                 ),
@@ -105,12 +105,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(height: 16),
                 Text('Default', style: Theme.of(context).textTheme.titleLarge),
                 integerInfiniteNumberPicker,
-                RaisedButton(
+                MaterialButton(
                   onPressed: () => _showInfIntDialog(),
                   child: Text("Current int value: $_currentInfIntValue"),
                 ),
                 const Divider(color: Colors.grey, height: 32),
-                Text('Decorated', style: Theme.of(context).textTheme.titleLarge),
+                Text('Decorated',
+                    style: Theme.of(context).textTheme.titleLarge),
                 integerInfiniteDecoratedNumberPicker,
                 Text(
                   "Current int value: $_currentInfIntValueDecorated",
