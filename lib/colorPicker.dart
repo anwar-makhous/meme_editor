@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
-
 class ColorPickerExample extends StatefulWidget {
+  const ColorPickerExample({super.key});
+
   @override
   State<StatefulWidget> createState() => _ColorPickerExampleState();
 }
@@ -25,14 +26,14 @@ class _ColorPickerExampleState extends State<ColorPickerExample> {
         child: Scaffold(
           appBar: AppBar(
             title: GestureDetector(
-              child: Text('Flutter Color Picker Example'),
+              child: const Text('Flutter Color Picker Example'),
               onDoubleTap: () => setState(() => lightTheme = !lightTheme),
             ),
-            bottom: TabBar(
+            bottom: const TabBar(
               tabs: <Widget>[
-                const Tab(text: 'HSV'),
-                const Tab(text: 'Material'),
-                const Tab(text: 'Block'),
+                Tab(text: 'HSV'),
+                Tab(text: 'Material'),
+                Tab(text: 'Block'),
               ],
             ),
           ),
@@ -62,8 +63,8 @@ class _ColorPickerExampleState extends State<ColorPickerExample> {
                                 showLabel: true,
                                 paletteType: PaletteType.hsv,
                                 pickerAreaBorderRadius: const BorderRadius.only(
-                                  topLeft: const Radius.circular(2.0),
-                                  topRight: const Radius.circular(2.0),
+                                  topLeft: Radius.circular(2.0),
+                                  topRight: Radius.circular(2.0),
                                 ),
                               ),
                             ),
@@ -99,8 +100,8 @@ class _ColorPickerExampleState extends State<ColorPickerExample> {
                                 showLabel: false,
                                 showIndicator: true,
                                 indicatorBorderRadius:
-                                const BorderRadius.vertical(
-                                  top: const Radius.circular(25.0),
+                                    const BorderRadius.vertical(
+                                  top: Radius.circular(25.0),
                                 ),
                               ),
                             ),
@@ -152,7 +153,7 @@ class _ColorPickerExampleState extends State<ColorPickerExample> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Select a color'),
+                          title: const Text('Select a color'),
                           content: SingleChildScrollView(
                             child: BlockPicker(
                               pickerColor: currentColor,

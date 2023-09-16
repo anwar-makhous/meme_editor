@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class TextOverImage extends StatelessWidget {
+  const TextOverImage({super.key});
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Text Over Image Image Example'),
+        title: const Text('Text Over Image Image Example'),
       ),
       body: Center(
-        child: Container(
+        child: SizedBox(
           height: 300,
           width: 300,
           child: Stack(
@@ -19,12 +21,12 @@ class TextOverImage extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     color: Colors.blue,
-                    image: DecorationImage(
-                        image: new NetworkImage(
+                    image: const DecorationImage(
+                        image: NetworkImage(
                             "https://thumbs.dreamstime.com/b/funny-face-baby-27701492.jpg"),
                         fit: BoxFit.fill)),
               ),
-              TextOverImageHomePage()
+              const TextOverImageHomePage()
             ],
           ),
         ),
@@ -34,6 +36,8 @@ class TextOverImage extends StatelessWidget {
 }
 
 class TextOverImageHomePage extends StatefulWidget {
+  const TextOverImageHomePage({super.key});
+
   @override
   _TextOverImageHomePageState createState() => _TextOverImageHomePageState();
 }
@@ -54,11 +58,11 @@ class _TextOverImageHomePageState extends State<TextOverImageHomePage> {
                     offset.dx + details.delta.dx, offset.dy + details.delta.dy);
               });
             },
-            child: SizedBox(
+            child: const SizedBox(
               width: 300,
               height: 300,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0),
                 child: Center(
                   child: Text("You Think You Are Funny But You Are Not",
                       textAlign: TextAlign.center,

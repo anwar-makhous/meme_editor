@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -13,12 +15,12 @@ class _HomePageState extends State<HomePage> {
     return ListView.builder(
         itemCount: 3,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {},
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Column(
                 children: <Widget>[
                   Stack(
@@ -53,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                                     size: 40,
                                   )),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Container(
@@ -61,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(7.5),
                                 color: Colors.white,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.share,
                                 size: 40,
                               ),
@@ -72,14 +74,14 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(20.0),
                         bottomRight: Radius.circular(20.0),
                       ),
                       color: Colors.blue,
                     ),
-                    child: Column(
+                    child: const Column(
                       children: <Widget>[
                         SizedBox(
                           height: 10,
@@ -144,13 +146,13 @@ class _HomePageState extends State<HomePage> {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
         border: Border.all(color: Colors.black.withAlpha(20), width: 1),
       ),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.blueAccent.withAlpha(15),
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(20.0),
             topRight: Radius.circular(20.0),
           ),
@@ -166,10 +168,10 @@ class _HomePageState extends State<HomePage> {
               size: 50,
               color: Colors.blue.withOpacity(0.7),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
-            Text(
+            const Text(
               "Log in or create an account",
               style: TextStyle(fontSize: 15),
             )
@@ -189,17 +191,17 @@ class _HomePageState extends State<HomePage> {
               child: ListView(
             children: <Widget>[
               CustomListTile(Icons.person, "Profile", () => {}),
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: Colors.grey,
               ),
               CustomListTile(Icons.settings, "Settings", () => {}),
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: Colors.grey,
               ),
               CustomListTile(Icons.phone, "Contact Us", () => {}),
-              Divider(thickness: 1, color: Colors.grey),
+              const Divider(thickness: 1, color: Colors.grey),
               CustomListTile(Icons.lock, "Log Out", () => {}),
             ],
           )),
@@ -207,7 +209,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.blue,
             actions: <Widget>[
               IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.search,
                   color: Colors.white,
                 ),
@@ -222,11 +224,11 @@ class _HomePageState extends State<HomePage> {
               child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Flexible(child: loginCard()),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Flexible(child: card())
@@ -247,7 +249,7 @@ class CustomListTile extends StatelessWidget {
   String text;
   Function onTap;
 
-  CustomListTile(this.icon, this.text, this.onTap);
+  CustomListTile(this.icon, this.text, this.onTap, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -257,7 +259,7 @@ class CustomListTile extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         splashColor: Colors.lightBlueAccent,
-        child: Container(
+        child: SizedBox(
           height: 50,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -269,14 +271,14 @@ class CustomListTile extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       text,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                       ),
                     ),
                   ),
                 ],
               ),
-              Icon(Icons.arrow_right),
+              const Icon(Icons.arrow_right),
             ],
           ),
         ),

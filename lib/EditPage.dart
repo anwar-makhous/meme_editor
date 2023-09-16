@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -14,12 +13,14 @@ import 'package:permission_handler/permission_handler.dart';
 
 
 class EditPage extends StatefulWidget {
+  const EditPage({super.key});
+
   @override
   _EditPageState createState() => _EditPageState();
 }
 
 class _EditPageState extends State<EditPage> {
-  final GlobalKey globalKey = new GlobalKey();
+  final GlobalKey globalKey = GlobalKey();
 
   Color currentColor = Colors.white;
 
@@ -37,9 +38,9 @@ class _EditPageState extends State<EditPage> {
 
   bool imageSelected = false;
 
-  Random rng = new Random();
+  Random rng = Random();
 
-   List<Color> _colors = [
+   final List<Color> _colors = [
     Colors.red,
     Colors.pink,
     Colors.purple,
@@ -76,7 +77,7 @@ class _EditPageState extends State<EditPage> {
       } else {}
       _image = image;
     });
-    new Directory('storage/emulated/0/' + 'MemeGenerator')
+    Directory('storage/emulated/0/' 'MemeGenerator')
         .create(recursive: true);
   }
 
@@ -89,7 +90,7 @@ class _EditPageState extends State<EditPage> {
           child: Container(
             child: Column(
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 RepaintBoundary(
@@ -126,7 +127,7 @@ class _EditPageState extends State<EditPage> {
                                       color: currentColor,
                                       fontWeight: FontWeight.w700,
                                       fontSize: _fontSize,
-                                      shadows: <Shadow>[
+                                      shadows: const <Shadow>[
                                         Shadow(
                                           offset: Offset(2.0, 2.0),
                                           blurRadius: 3.0,
@@ -203,12 +204,12 @@ class _EditPageState extends State<EditPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 imageSelected
                     ? Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: <Widget>[
                       TextField(
@@ -217,7 +218,7 @@ class _EditPageState extends State<EditPage> {
                             headerText = val;
                           });
                         },
-                        decoration: InputDecoration(hintText: "Type your text here"),
+                        decoration: const InputDecoration(hintText: "Type your text here"),
                       ),
 //                          SizedBox(
 //                            height: 12,
@@ -230,12 +231,12 @@ class _EditPageState extends State<EditPage> {
 //                            },
 //                            decoration: InputDecoration(hintText: "Footer Text"),
 //                          ),
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Text('Change Size:', style: TextStyle(fontSize: 16),),
-                          new NumberPicker.horizontal(
+                          const Text('Change Size:', style: TextStyle(fontSize: 16),),
+                          NumberPicker.horizontal(
                             listViewHeight: 50,
                               initialValue: 25,
                               minValue: 10,
@@ -257,7 +258,7 @@ class _EditPageState extends State<EditPage> {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Text('Select a color'),
+                                title: const Text('Select a color'),
                                 content: SingleChildScrollView(
                                   child: BlockPicker(
                                     availableColors: _colors,
@@ -280,13 +281,13 @@ class _EditPageState extends State<EditPage> {
                           //TODO
                           takeScreenshot();
                         },
-                        child: Text("Save"),
+                        child: const Text("Save"),
                       )
                     ],
                   ),
                 )
                     : Container(
-                  child: Center(
+                  child: const Center(
                     child: Text("Select image to get started"),
                   ),
                 ),
@@ -299,7 +300,7 @@ class _EditPageState extends State<EditPage> {
           onPressed: () {
             getImage();
           },
-          child: Icon(Icons.add_a_photo),
+          child: const Icon(Icons.add_a_photo),
         ),
       ),
     );
@@ -313,7 +314,7 @@ class _EditPageState extends State<EditPage> {
     ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List pngBytes = byteData.buffer.asUint8List();
     print(pngBytes);
-    File imgFile = new File('$directory/screenshot${rng.nextInt(200)}.png');
+    File imgFile = File('$directory/screenshot${rng.nextInt(200)}.png');
     setState(() {
       _imageFile = imgFile;
     });

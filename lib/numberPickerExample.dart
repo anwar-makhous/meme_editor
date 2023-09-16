@@ -5,25 +5,27 @@ import 'package:numberpicker/numberpicker.dart';
 
 
 class ExampleApp extends StatelessWidget {
+  const ExampleApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'NumberPicker Example',
-      theme: new ThemeData(
+      theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(title: 'NumberPicker Example'),
+      home: const MyHomePage(title: 'NumberPicker Example'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -38,13 +40,13 @@ class _MyHomePageState extends State<MyHomePage> {
   NumberPicker integerInfiniteDecoratedNumberPicker;
   NumberPicker decimalNumberPicker;
 
-  Decoration _decoration = new BoxDecoration(
-    border: new Border(
-      top: new BorderSide(
+  final Decoration _decoration = const BoxDecoration(
+    border: Border(
+      top: BorderSide(
         style: BorderStyle.solid,
         color: Colors.black26,
       ),
-      bottom: new BorderSide(
+      bottom: BorderSide(
         style: BorderStyle.solid,
         color: Colors.black26,
       ),
@@ -58,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Tab(text: 'Integer'),
               Tab(text: 'Decimal'),
@@ -71,19 +73,19 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Column(
               children: <Widget>[
-                SizedBox(height: 16),
-                Text('Default', style: Theme.of(context).textTheme.title),
+                const SizedBox(height: 16),
+                Text('Default', style: Theme.of(context).textTheme.titleLarge),
                 integerNumberPicker,
-                new RaisedButton(
+                RaisedButton(
                   onPressed: () => _showIntDialog(),
-                  child: new Text("Current int value: $_currentIntValue"),
+                  child: Text("Current int value: $_currentIntValue"),
                 ),
-                Divider(color: Colors.grey, height: 32),
-                Text('Horizontal', style: Theme.of(context).textTheme.title),
+                const Divider(color: Colors.grey, height: 32),
+                Text('Horizontal', style: Theme.of(context).textTheme.titleLarge),
                 horizontalNumberPicker,
                 Text(
                   "Current int value: $_currentHorizontalIntValue",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -92,27 +94,27 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               children: <Widget>[
                 decimalNumberPicker,
-                new RaisedButton(
+                RaisedButton(
                   onPressed: () => _showDoubleDialog(),
-                  child: new Text("Current double value: $_currentDoubleValue"),
+                  child: Text("Current double value: $_currentDoubleValue"),
                 ),
               ],
             ),
             Column(
               children: <Widget>[
-                SizedBox(height: 16),
-                Text('Default', style: Theme.of(context).textTheme.title),
+                const SizedBox(height: 16),
+                Text('Default', style: Theme.of(context).textTheme.titleLarge),
                 integerInfiniteNumberPicker,
-                new RaisedButton(
+                RaisedButton(
                   onPressed: () => _showInfIntDialog(),
-                  child: new Text("Current int value: $_currentInfIntValue"),
+                  child: Text("Current int value: $_currentInfIntValue"),
                 ),
-                Divider(color: Colors.grey, height: 32),
-                Text('Decorated', style: Theme.of(context).textTheme.title),
+                const Divider(color: Colors.grey, height: 32),
+                Text('Decorated', style: Theme.of(context).textTheme.titleLarge),
                 integerInfiniteDecoratedNumberPicker,
                 Text(
                   "Current int value: $_currentInfIntValueDecorated",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -125,14 +127,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _initializeNumberPickers() {
-    integerNumberPicker = new NumberPicker.integer(
+    integerNumberPicker = NumberPicker.integer(
       initialValue: _currentIntValue,
       minValue: 0,
       maxValue: 100,
       step: 10,
       onChanged: (value) => setState(() => _currentIntValue = value),
     );
-    horizontalNumberPicker = new NumberPicker.horizontal(
+    horizontalNumberPicker = NumberPicker.horizontal(
       initialValue: _currentHorizontalIntValue,
       minValue: 0,
       maxValue: 100,
@@ -140,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
       zeroPad: true,
       onChanged: (value) => setState(() => _currentHorizontalIntValue = value),
     );
-    integerInfiniteNumberPicker = new NumberPicker.integer(
+    integerInfiniteNumberPicker = NumberPicker.integer(
       initialValue: _currentInfIntValue,
       minValue: 0,
       maxValue: 99,
@@ -148,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
       infiniteLoop: true,
       onChanged: (value) => setState(() => _currentInfIntValue = value),
     );
-    integerInfiniteDecoratedNumberPicker = new NumberPicker.integer(
+    integerInfiniteDecoratedNumberPicker = NumberPicker.integer(
       initialValue: _currentInfIntValueDecorated,
       minValue: 0,
       maxValue: 99,
@@ -159,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
       onChanged: (value) =>
           setState(() => _currentInfIntValueDecorated = value),
     );
-    decimalNumberPicker = new NumberPicker.decimal(
+    decimalNumberPicker = NumberPicker.decimal(
       initialValue: _currentDoubleValue,
       minValue: 1,
       maxValue: 5,
@@ -172,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await showDialog<int>(
       context: context,
       builder: (BuildContext context) {
-        return new NumberPickerDialog.integer(
+        return NumberPickerDialog.integer(
           minValue: 0,
           maxValue: 100,
           step: 10,
@@ -180,10 +182,8 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       },
     ).then((num value) {
-      if (value != null) {
-        setState(() => _currentIntValue = value);
-        integerNumberPicker.animateInt(value);
-      }
+      setState(() => _currentIntValue = value);
+      integerNumberPicker.animateInt(value);
     });
   }
 
@@ -191,7 +191,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await showDialog<int>(
       context: context,
       builder: (BuildContext context) {
-        return new NumberPickerDialog.integer(
+        return NumberPickerDialog.integer(
           minValue: 0,
           maxValue: 99,
           step: 10,
@@ -200,10 +200,8 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       },
     ).then((num value) {
-      if (value != null) {
-        setState(() => _currentInfIntValue = value);
-        integerInfiniteNumberPicker.animateInt(value);
-      }
+      setState(() => _currentInfIntValue = value);
+      integerInfiniteNumberPicker.animateInt(value);
     });
   }
 
@@ -211,19 +209,17 @@ class _MyHomePageState extends State<MyHomePage> {
     await showDialog<double>(
       context: context,
       builder: (BuildContext context) {
-        return new NumberPickerDialog.decimal(
+        return NumberPickerDialog.decimal(
           minValue: 1,
           maxValue: 5,
           decimalPlaces: 2,
           initialDoubleValue: _currentDoubleValue,
-          title: new Text("Pick a decimal number"),
+          title: const Text("Pick a decimal number"),
         );
       },
     ).then((num value) {
-      if (value != null) {
-        setState(() => _currentDoubleValue = value);
-        decimalNumberPicker.animateDecimalAndInteger(value);
-      }
+      setState(() => _currentDoubleValue = value);
+      decimalNumberPicker.animateDecimalAndInteger(value);
     });
   }
 }
